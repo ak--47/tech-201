@@ -11,52 +11,61 @@ const bigSep = () => console.log("\n============================\n");
 // MODULE 0: PRIMITIVES
 (function a_review_of_primitives() {
 	bigSep();
-	console.log('LESSON 0: A Review of Primitives\n\tthis is all there is!');
+	console.log('🧱 LESSON 0: A Review of Primitives\n\tthis is all there is!');
 	sep();
 	// Primitives are the most basic data types in JavaScript.
 	// They include: string, number, boolean, null, undefined, and symbol.
 	// Each primitive represents a single value and has immutable characteristics.
+	console.log('📝 TEXT DATA:');
 	const aString = "Hello, World!";
-	console.log("Strings look like this:", aString);
+	console.log("   📄 Strings look like this:", aString);
+	
+	console.log('🔢 NUMERIC DATA:');
 	const aNumber = 42;
-	console.log("Numbers look like this:", aNumber);
+	console.log("   🎯 Numbers look like this:", aNumber);
+	
+	console.log('✅ TRUE/FALSE DATA:');
 	const aBoolean = true;
-	console.log("Booleans look like this:", aBoolean);
+	console.log("   ⚡ Booleans look like this:", aBoolean);
 	sep();
 
 	// some languages will have different representations for "empty" state
+	console.log('🕳️  EMPTY DATA:');
 	const aNull = null;
-	console.log("Null looks like this:", aNull);
+	console.log("   ⭕ Null looks like this:", aNull);
 	const anUndefined = undefined;
-	console.log("Undefined looks like this:", anUndefined);
+	console.log("   ❓ Undefined looks like this:", anUndefined);
 	sep();
 
 	// Symbols are a unique and immutable primitive value that can be used as object property keys.
+	console.log('🔑 UNIQUE IDENTIFIERS:');
 	const aSymbol = Symbol("unique");
-	console.log("Symbols look like this:", aSymbol);
+	console.log("   🏷️  Symbols look like this:", aSymbol);
 	const anotherSymbol = Symbol("unique");
-	console.log("Symbols are unique, so `aSymbol` is not equal to `anotherSymbol`:", aSymbol === anotherSymbol);
+	console.log("   🆔 Symbols are unique, so `aSymbol` is not equal to `anotherSymbol`:", aSymbol === anotherSymbol);
 	// ^ think to yourself... why might 'unique symbols' be a valuable data type?
 	sep();
 
 	// we also have BigInt for large integers
+	console.log('🚀 SPECIAL NUMBERS:');
 	const aBigInt = BigInt(1234567890123456789012345678901234567890);
-	console.log("BigInt looks like this:", aBigInt);
+	console.log("   📏 BigInt looks like this:", aBigInt);
 	//and decimals (floats)
 	const aFloat = 3.14159;
-	console.log("Floats look like this:", aFloat);
+	console.log("   🥧 Floats look like this:", aFloat);
 	// ^ think to yourself... why might numerical precision be critical for every application?
 	sep();
 
 	// you can always check the type of a variable using the typeof operator
-	console.log("The type of aString is:", typeof aString);
-	console.log("The type of aNumber is:", typeof aNumber);
-	console.log("The type of aBoolean is:", typeof aBoolean);
-	console.log("The type of aNull is:", typeof aNull);
-	console.log("The type of anUndefined is:", typeof anUndefined);
-	console.log("The type of aSymbol is:", typeof aSymbol);
-	console.log("The type of aBigInt is:", typeof aBigInt);
-	console.log("The type of aFloat is:", typeof aFloat);
+	console.log('🔍 TYPE CHECKING:');
+	console.log(`   📄 String    → "${typeof aString}"`);
+	console.log(`   🎯 Number    → "${typeof aNumber}"`);
+	console.log(`   ⚡ Boolean   → "${typeof aBoolean}"`);
+	console.log(`   ⭕ Null      → "${typeof aNull}"     ⚠️  (this is a JavaScript quirk!)`);
+	console.log(`   ❓ Undefined → "${typeof anUndefined}"`);
+	console.log(`   🏷️  Symbol    → "${typeof aSymbol}"`);
+	console.log(`   📏 BigInt    → "${typeof aBigInt}"`);
+	console.log(`   🥧 Float     → "${typeof aFloat}"`);
 	// TODO: WISDOM: you never fully understand the problem until you concretely know all the primitives involved ! 
 	sep();
 })();
@@ -65,49 +74,54 @@ const bigSep = () => console.log("\n============================\n");
 // MODULE 1: OBJECTS AND ARRAYS
 (function a_review_of_objects_and_arrays() {
 	bigSep();
-	console.log('LESSON 1: A Review of Objects and Arrays\n\t{} and [] are how we ORGANIZE primitives');
+	console.log('📦 LESSON 1: A Review of Objects and Arrays\n\t{} and [] are how we ORGANIZE primitives');
 	sep();
 	// objects are UNORDERED collections of key:value pairs, where keys are strings (or Symbols) 
 	// ? and values can be ANY data type, allowing for nested structures.
+	console.log('🗺️  OBJECTS {} - Unordered Key:Value Collections:');
 	const anObject = {
 		name: "Alice",
 		age: 30,
 		isStudent: false,
 		anotherObject: {}
 	};
-	console.log("Objects look like this:", anObject);
-	console.log("Accessing properties:", anObject.name, anObject.age, anObject.isStudent);
+	console.log("   📦 Objects look like this:", anObject);
+	console.log("   🔑 Accessing properties:", `name="${anObject.name}"`, `age=${anObject.age}`, `isStudent=${anObject.isStudent}`);
 
 	sep();
 
+	console.log('📁 ARRAYS [] - Ordered Index:Value Collections:');
 	// arrays are ORDERED collections of values at numerical index, which can be of any type.
 	const anArray = [1, 2, 3, "four", true];
-	console.log("Arrays look like this:", anArray);
-	console.log("Accessing elements:", anArray[0], anArray[3]);
+	console.log("   📦 Arrays look like this:", anArray);
+	console.log("   🎯 Accessing elements:", `[0]=${anArray[0]}`, `[3]="${anArray[3]}"`);
 	// ^ think: what is the difference between a 'key' (in {}) and an 'index' (in []) ?
 	sep();
 
 
 	// importantly, arrays can also contain objects, which is foundational to how we model 'collections of things'
+	console.log('👥 ARRAYS OF OBJECTS - Real-World Data Structures:');
 	const anArrayOfObjects = [
 		{ name: "Charlie", age: 25 },
 		{ name: "Diana", age: 28 }
 	];
-	console.log("Array of Objects:", anArrayOfObjects);
-	console.log("Accessing elements in Array of Objects:", anArrayOfObjects[0].name, anArrayOfObjects[1].age);
+	console.log("   📦 Array of Objects:", anArrayOfObjects);
+	console.log("   🔗 Accessing nested data:", `[0].name="${anArrayOfObjects[0].name}"`, `[1].age=${anArrayOfObjects[1].age}`);
 	sep();
 
 	// You can also use methods to manipulate objects and arrays.
+	console.log('⚙️  METHODS & MANIPULATION:');
 	anObject.greet = function () {
 		return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
 	};
-	console.log("Using a method on an object:", anObject.greet());
+	console.log("   🗣️  Object method:", anObject.greet());
 	anArray.push("new item");
-	console.log("After adding a new item to the array:", anArray);
+	console.log("   ➕ Array after push():", anArray);
 	sep();
 
-	console.log("Objects do not guarantee order:", Object.keys(anObject));
-	console.log("Arrays guarantee order:", anArray.map((item, index) => `${index}: ${item}`));
+	console.log('⚠️  KEY DIFFERENCE:');
+	console.log("   🗺️  Objects (UNORDERED):", Object.keys(anObject), '← keys can be in any order!');
+	console.log("   📁 Arrays (ORDERED):  ", anArray.map((item, index) => `[${index}]=${item}`), '← always same order!');
 	// TODO: WISDOM: when would you need an UNORDERED collection vs an ORDERED collection? critical decision in data modeling!
 	sep();
 })();
@@ -139,26 +153,30 @@ const bigSep = () => console.log("\n============================\n");
 	console.log("XML String:\n", xmlString);
 	sep();
 
+	console.log('📋 CSV FORMAT (Comma-Separated Values):');
 	// CSV (Comma-Separated Values) is a simple format for tabular data
-
 	const csvString = json_to_csv(anObject);
-	console.log("CSV String:", prettyTable(csvString));
+	console.log("   📄 CSV Table:", prettyTable(csvString));
 	sep();
 
+	console.log('📑 YAML FORMAT (YAML Ain\'t Markup Language):');
 	// YAML (YAML Ain't Markup Language) is a human-readable data serialization format
 	const yamlString = json_to_yaml(anObject);
-	console.log("YAML String:\n", (yamlString));
+	console.log("   📄 YAML String:");
+	console.log(yamlString);
 	sep();
 
+	console.log('\n🎯 USE CASES:');
 	// Each format has its own use cases and advantages.
-	// JSON is widely used for APIs and web applications due to its simplicity and ease of use
-	// XML is often used in configuration files and data interchange between systems
-	// CSV is commonly used for spreadsheets and tabular data
-	// YAML is often used for configuration files due to its readability
+	console.log('   📤 JSON: APIs, web apps (fast & simple)');
+	console.log('   🏷️  XML:  Legacy systems, SOAP APIs (verbose but structured)');
+	console.log('   📋 CSV:  Spreadsheets, reports (simple tables only)');
+	console.log('   📑 YAML: Config files, docs (human-readable)');
 	// ^ think: why might you choose one format over another? what are the tradeoffs? critical design decision!
 
 	//are they completely interchangeable? let try something more complex
-	console.log("JSON and XML can represent complex data structures, while CSV is more suited for flat data; let's see an example:\n");
+	console.log('\n🧪 COMPLEXITY TEST:');
+	console.log("🔗 JSON and XML can represent complex data structures, while CSV is more suited for flat data; let's see an example:\n");
 	const complexData = {
 		users: [
 			{ name: "Alice", age: 30, hobbies: ["reading", "gaming"], address: { city: "Wonderland", zip: "12345" } },
@@ -186,21 +204,28 @@ const bigSep = () => console.log("\n============================\n");
 		]
 	};
 
-	console.log("\nComplex Data in JSON:\n", JSON.stringify(complexData, null, 2));
+	console.log("\n📤 Complex Data in JSON:");
+	console.log(JSON.stringify(complexData, null, 2));
 	sep();
 	// XML can represent this data, but it would be more verbose
-	console.log("\nComplex Data in XML:\n", json_to_xml(complexData));
+	console.log("\n🏷️  Complex Data in XML:");
+	console.log(json_to_xml(complexData));
 	sep();
 	// CSV would not be suitable for this structure as it cannot represent nested objects or arrays
-	console.log("Complex Data in CSV:\n", `users/name,users/age,users/hobbies/0,users/hobbies/1,users/address/city,users/address/zip,users/address/friends/0/name,users/address/friends/0/age,users/address/friends/1/name,users/address/friends/1/age,users/address/friends/1/friends/0/name,users/address/friends/1/friends/0/age,users/address/friends/1/friends/1/name,users/address/friends/1/friends/1/age,users/address/friends/1/friends/1/friends/0/name,users/address/friends/1/friends/1/friends/0/age,users/address/friends/2/name,users/address/friends/2/age
+	console.log("📋 Complex Data in CSV (⚠️  gets messy!):");
+	console.log(`users/name,users/age,users/hobbies/0,users/hobbies/1,users/address/city,users/address/zip,users/address/friends/0/name,users/address/friends/0/age,users/address/friends/1/name,users/address/friends/1/age,users/address/friends/1/friends/0/name,users/address/friends/1/friends/0/age,users/address/friends/1/friends/1/name,users/address/friends/1/friends/1/age,users/address/friends/1/friends/1/friends/0/name,users/address/friends/1/friends/1/friends/0/age,users/address/friends/2/name,users/address/friends/2/age
 Alice,30,reading,gaming,Wonderland,12345,,,,,,,,,,,,
 Bob,25,hiking,cooking,Builderland,67890,,,,,,,,,,,,
 Eve,22,,,Techville,54321,Charlie,25,Diana,28,Edgar,42,Fiona,30,George,35,Lynn,22
 `);
 	sep();
 	// YAML would be a trip
-	console.log("Complex Data in YAML:\n", json_to_yaml(complexData));
+	console.log("📑 Complex Data in YAML:");
+	console.log(json_to_yaml(complexData));
 	sep();
+	console.log('\n💡 KEY INSIGHT:');
+	console.log('   🏆 JSON wins for flexibility + web compatibility');
+	console.log('   🌐 Native to JavaScript = the language of the web!');
 	// TODO: WISDOM: JSON is the most flexible AND the most verbose data format (it's also native to javascript! the language of the people)
 
 })();
