@@ -1,26 +1,19 @@
 -- =====================================================================
 -- SNIPPET 01 — BOOTSTRAP: dataset + base data
--- Author: AK  |  Mode: BigQuery Standard SQL
--- 🧪 CUSTOMIZE: Set your project and dataset below, then find/replace throughout
+-- by: AK  |  Mode: BigQuery Standard SQL
+-- IMPORTANT: read through the settings; you need to update project/dataset for your environment
 -- =====================================================================
 
--- ⚙️ PROJECT & DATASET CONFIGURATION
---
--- TO CUSTOMIZE FOR YOUR PROJECT:
--- 1. Find/Replace 'mixpanel-gtm-training' → 'your-project-id'
--- 2. Find/Replace 'sandbox_ak' → 'your_dataset_name'
--- 3. Update the session variables below to match
---
--- Option 1: Set session variables (BigQuery Console/Colab)
+-- Session variables (work for SOME queries, not DDL)
 SET @@dataset_project_id = 'mixpanel-gtm-training';
 SET @@dataset_id = 'sandbox_ak';
 
--- Option 2: Declare variables (for scripting - uncomment if needed)
--- DECLARE project_id STRING DEFAULT 'mixpanel-gtm-training';
--- DECLARE dataset_id STRING DEFAULT 'sandbox_ak';
+-- NEXT: Find/Replace approach (most reliable)
+--   • Find/Replace 'mixpanel-gtm-training' → 'your-project-id'
+--   • IMPORTANT - Find/Replace 'sandbox_ak' → 'your_dataset_name'
 
 -- 0) Ensure your sandbox dataset exists (US multi‑region by default)
-CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`
+CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak` -- CHANGE ME!
 OPTIONS(default_table_expiration_days=30);
 
 -- 1) Customers (small dimension)
