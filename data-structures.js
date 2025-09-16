@@ -103,7 +103,7 @@ const bigSep = () => console.log("\n============================\n");
 	console.log('👥 ARRAYS OF OBJECTS - Real-World Data Structures:');
 	const anArrayOfObjects = [
 		{ name: "Charlie", age: 25 },
-		{ name: "Diana", age: 28 }
+		{ name: "Diana", age: 28 }		
 	];
 	console.log("   📦 Array of Objects:", anArrayOfObjects);
 	console.log("   🔗 Accessing nested data:", `[0].name="${anArrayOfObjects[0].name}"`, `[1].age=${anArrayOfObjects[1].age}`);
@@ -227,7 +227,7 @@ Eve,22,,,Techville,54321,Charlie,25,Diana,28,Edgar,42,Fiona,30,George,35,Lynn,22
 	console.log('   🏆 JSON wins for flexibility + web compatibility');
 	console.log('   🌐 Native to JavaScript = the language of the web!');
 	// TODO: WISDOM: JSON is the most flexible AND the most verbose data format (it's also native to javascript! the language of the people)
-
+		sep()
 })();
 
 
