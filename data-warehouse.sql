@@ -319,7 +319,6 @@ GROUP BY day
 ORDER BY day;
 
 -- EXPLAIN to see pruning & join/scan strategy
-EXPLAIN
 SELECT *
 FROM `mixpanel-gtm-training.sandbox_ak.events_part`
 WHERE DATE(event_ts) = DATE '2024-03-13' AND customer_id IN (2,5);
@@ -534,7 +533,6 @@ ORDER BY customer_id;
 
 CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`;
 
-EXPLAIN
 SELECT c.country, COUNT(*) AS orders
 FROM `mixpanel-gtm-training.sandbox_ak.orders` o
 JOIN `mixpanel-gtm-training.sandbox_ak.customers` c USING (customer_id)
