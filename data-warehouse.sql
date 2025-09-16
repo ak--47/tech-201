@@ -427,7 +427,7 @@ SELECT * FROM UNNEST([
 
 -- Step 1: Close out changed current rows
 UPDATE `mixpanel-gtm-training.sandbox_ak.dim_customer_scd` T
-SET T.effective_to = S.effective_from - INTERVAL 1 DAY, T.is_current = FALSE
+SET T.effective_to = DATE_SUB(S.effective_from, INTERVAL 1 DAY), T.is_current = FALSE
 FROM `mixpanel-gtm-training.sandbox_ak.incoming_changes` S
 WHERE T.customer_id = S.customer_id
   AND T.is_current = TRUE
