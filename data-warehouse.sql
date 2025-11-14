@@ -243,7 +243,7 @@ QUALIFY ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY order_ts DESC) = 1;
 CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`;
 
 -- Some nested data:
-SELECT * FROM `mixpanel-gtm-training.sandbox_ak.orders_nested`
+SELECT * FROM `mixpanel-gtm-training.sandbox_ak.orders_nested`;
 
 -- Expand line items with UNNEST
 -- CROSS JOIN UNNEST flattens arrays into separate rows - key pattern for nested data
