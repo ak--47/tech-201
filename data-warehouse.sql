@@ -23,7 +23,8 @@ SELECT * FROM UNNEST([
   STRUCT(2 AS customer_id, 'Bob'     AS name, DATE '2024-02-10' AS signup_date, 'CA' AS country),
   STRUCT(3 AS customer_id, 'Charlie' AS name, DATE '2024-02-15' AS signup_date, 'US' AS country),
   STRUCT(4 AS customer_id, 'Diana'   AS name, DATE '2024-03-01' AS signup_date, 'GB' AS country),
-  STRUCT(5 AS customer_id, 'Eve'     AS name, DATE '2024-03-20' AS signup_date, 'US' AS country)
+  STRUCT(5 AS customer_id, 'Eve'     AS name, DATE '2024-03-20' AS signup_date, 'US' AS country),
+  STRUCT(6 AS customer_id, 'Frank'   AS name, DATE '2024-03-25' AS signup_date, 'US' AS country)
 ]);
 
 -- 2) Orders (fact table, flat)
@@ -117,6 +118,7 @@ GROUP BY day
 ORDER BY day;
 
 -- Orders & revenue by customer country (join + group)
+-- Note: ROUND(x, 2) limits precision but doesn't force trailing zeros (45.00 displays as "45")
 SELECT
   c.country,
   COUNT(*) AS orders,
@@ -128,28 +130,59 @@ JOIN `mixpanel-gtm-training.sandbox_ak.customers` AS c USING (customer_id)
 GROUP BY c.country
 ORDER BY net_revenue DESC;
 
+-- Same query with FORMAT to force 2 decimal places (e.g., "45.00" instead of "45")
+-- Important: FORMAT returns STRING, so ORDER BY must use the numeric expression, not the alias
+SELECT
+  c.country,
+  COUNT(*) AS orders,
+  FORMAT('%.2f',
+    ROUND(SUM(CASE WHEN o.status='paid' THEN o.amount
+                   WHEN o.status='refunded' THEN -o.amount
+                   ELSE 0 END), 2)
+  ) AS net_revenue
+FROM `mixpanel-gtm-training.sandbox_ak.orders` AS o
+JOIN `mixpanel-gtm-training.sandbox_ak.customers` AS c USING (customer_id)
+GROUP BY c.country
+ORDER BY ROUND(SUM(CASE WHEN o.status='paid' THEN o.amount
+                        WHEN o.status='refunded' THEN -o.amount
+                        ELSE 0 END), 2) DESC;
+
 -- TODO: WISDOM: Most BI visuals = GROUP BY + aggregate. Model to make these trivial.
 
 
--- ============================================
--- SNIPPET 04 — Joins: inner, left, anti (semi)
--- ============================================
+-- =====================================================
+-- SNIPPET 04 — Joins: inner, left, right, anti (semi)
+-- =====================================================
 
 CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`;
 
--- Inner join: only rows with matches
+-- INNER JOIN: only rows where both sides match (most common)
+-- "JOIN" and "INNER JOIN" are equivalent; INNER is implied
 SELECT o.order_id, c.name, o.amount
 FROM `mixpanel-gtm-training.sandbox_ak.orders` o
 JOIN `mixpanel-gtm-training.sandbox_ak.customers` c USING (customer_id)
 ORDER BY o.order_id;
 
--- Left join: keep all customers (nulls = meaningful)
+-- LEFT OUTER JOIN: keep ALL rows from left table, NULLs when right has no match
+-- "LEFT JOIN" and "LEFT OUTER JOIN" are equivalent; OUTER is optional
+-- Use when: "Give me all customers, show orders if they exist"
 SELECT c.customer_id, c.name, o.order_id, o.amount
 FROM `mixpanel-gtm-training.sandbox_ak.customers` c
 LEFT JOIN `mixpanel-gtm-training.sandbox_ak.orders` o USING (customer_id)
 ORDER BY c.customer_id, o.order_id;
 
--- Anti-join: customers with NO paid orders
+-- RIGHT OUTER JOIN: keep ALL rows from right table, NULLs when left has no match
+-- "RIGHT JOIN" and "RIGHT OUTER JOIN" are equivalent; OUTER is optional
+-- Less common (usually rewrite as LEFT JOIN), but useful for symmetric understanding
+-- Use when: "Give me all orders, show customer details if they exist"
+SELECT o.order_id, o.amount, c.name, c.country
+FROM `mixpanel-gtm-training.sandbox_ak.customers` c
+RIGHT JOIN `mixpanel-gtm-training.sandbox_ak.orders` o USING (customer_id)
+ORDER BY o.order_id;
+
+-- ANTI-JOIN pattern: find rows in left table with NO match in right
+-- Uses LEFT JOIN + WHERE right_key IS NULL
+-- Use when: "Give me customers who have NEVER placed a paid order"
 SELECT c.customer_id, c.name
 FROM `mixpanel-gtm-training.sandbox_ak.customers` c
 LEFT JOIN (
@@ -160,7 +193,7 @@ LEFT JOIN (
 WHERE p.customer_id IS NULL
 ORDER BY c.customer_id;
 
--- TODO: WISDOM: Join type communicates intent: exclude, keep, or only matches.
+-- TODO: WISDOM: Join type communicates intent. INNER = intersection, LEFT/RIGHT = preserve one side, ANTI = exclusion.
 
 
 -- ================================================
@@ -209,6 +242,9 @@ QUALIFY ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY order_ts DESC) = 1;
 
 CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`;
 
+-- Some nested data:
+SELECT * FROM `mixpanel-gtm-training.sandbox_ak.orders_nested`
+
 -- Expand line items with UNNEST
 -- CROSS JOIN UNNEST flattens arrays into separate rows - key pattern for nested data
 SELECT
@@ -220,6 +256,8 @@ CROSS JOIN UNNEST(o.items) AS i
 ORDER BY o.order_id, i.product;
 
 -- Re-aggregate to order totals (round-trip proof)
+-- "Round-trip" = start with nested array → UNNEST to flatten → aggregate back to totals
+-- This proves the UNNEST logic is correct: nested total = sum of flattened rows
 WITH line_items AS (
   SELECT o.order_id, i.qty * i.price AS line_total
   FROM `mixpanel-gtm-training.sandbox_ak.orders_nested` o, UNNEST(o.items) i
@@ -237,6 +275,9 @@ ORDER BY order_id;
 -- =======================================
 
 CREATE SCHEMA IF NOT EXISTS `mixpanel-gtm-training.sandbox_ak`;
+
+-- some JSON data:
+SELECT * FROM `mixpanel-gtm-training.sandbox_ak.json_events`;
 
 -- Pull scalars and array elements out of JSON
 -- JSON_EXTRACT_SCALAR gets simple values; JSON_EXTRACT_ARRAY gets arrays for UNNEST
