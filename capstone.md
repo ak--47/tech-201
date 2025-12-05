@@ -31,18 +31,48 @@ Should you need access to any Google Cloud or Mixpanel resources, reach out to A
 ## Timing + Deliverables
 
 You need to complete 3 things:
-1. A working data pipeline that meets the requirements of your IC level dataset
-2. A slide deck summarizing your project
+
+1. proof of a working data pipeline that meets the requirements of your IC level dataset
+2. A slide deck summarizing your project, including any code snippets, architecture diagrams, and key takeaways
 3. A ~10min presentation of your project
 
 You are expected to turn your slides and code in on XXXXXXX date. You will be presenting your work to your colleagues between YYYYY and ZZZZZZZ dates.
 
 ## Datasets
 
+Each IC level has a corresponding dataset with increasing complexity. You are expected to complete the capstone project using the dataset that corresponds to your current IC level.
+
+They are all in the same bucket:
+
+[`gs://se-capstone-2026/`](https://console.cloud.google.com/storage/browser/se-capstone-2026)
+
+And if you want to go above and beyond, feel free to tackle the extra credit section at the end!
+
+NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT
+
 #### I.C. LEVEL 3 DATASET:
+- [gs://se-capstone-2026/ic3/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic3)
+	- Basic web + mobile events
+	- Simple user properties
+	- Duplicate events
 
 #### I.C. LEVEL 4 DATASET:
-
+- [gs://se-capstone-2026/ic4/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic4)
+	- Complex data shapes (nested JSON, arrays)
+	- Sessionization Needed (single sessions table with start/end times)
+	- Incomplete user properties (need to join merge from multiple sources)
+	
 #### I.C. LEVEL 5 DATASET:
+- [gs://se-capstone-2026/ic5/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic5)
+	- User merges
+	- Lookups + Normalized Dimension Tables
+	- Bad Fields (nulls, wrong types, etc)
+	- Too big events (8kb, 256+ chars)
+
 
 #### Extra Credit
+- [gs://se-capstone-2026/vendors/](https://console.cloud.google.com/storage/browser/se-capstone-2026/vendors)
+
+None of these datasets are real. They are all manufactured by AK, based on 10 years of field experience. 
+
+However, if you want to tackle real datasets from the wild, here is the gold mine (extract) of datasets from vendors like Amplitude, Heap, Adobe, mParticle, Segment, and friends:
