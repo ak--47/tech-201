@@ -1,4 +1,4 @@
-# SE Capstone 2026
+# SE Capstone: 2026
 
 Over the past year and half, we have grown as a team, learning deeply about the technologies that power modern data engineering and analytics.
 
@@ -6,11 +6,11 @@ What started with some [things worth knowing](https://www.notion.so/mxpnl/Tech-1
 
 Pat yourself on the back for making it this far! You've demonstrated commitment, curiosity, and a passion for learning that will serve you well in your future endeavors.
 
-You have now arrived at the capstone project, where you will apply all that you've learned in a practical, hands-on way. This is your opportunity to showcase your skills, creativity, and problem-solving abilities that corresponds to your IC level.
+You have now arrived at the **capstone project**, where you will apply all that you've learned in a practical, hands-on way. This is your opportunity to showcase your skills, creativity, and problem-solving abilities that corresponds to your IC level.
 
 ## Project Overview
 
-In this capstone project, you will work on a real-world data engineering problem from start to finish. You will be responsible for designing and **implementing a data pipeline** that takes **files in google cloud storage** and brings them into Mixpanel as **well-formed events, properties, and users**.
+In this capstone project, you will work on a **real-world data engineering problem from start to finish**. You will be responsible for designing and **implementing a data pipeline** that takes **files in google cloud storage** and brings them into Mixpanel as **well-formed events, properties, and users**.
 
 You should then make a ~10min final presentation (slides + code + demo) of your project, highlighting the architecture, technologies used, and any challenges you faced along the way.
 
@@ -21,7 +21,7 @@ Your final presentation should include details on:
 - Any _modeling/cleaning challenges_ you faced and how you overcame them
 - Key _learnings and takeaways_ from the project
 
-We are extremely open to the tools and technologies you choose to use for this project. Feel free to leverage any of the technologies we've covered in our curriculum, or explore new ones that you find interesting. 
+We are extremely open to the tools and technologies you choose to use for this project. Feel free to leverage any of the technologies we've covered in our curriculum, or explore new ones that you find interesting. You can use any programming language, data processing framework, or orchestration tool that you are comfortable with. You can use any Gen AI products to help you along the way, but (be warned) the datasets are far too large to fit into an Gen AI's context window.
 
 Should you need access to any Google Cloud or Mixpanel resources, reach out to AK and he'll be happy to assist you.
 
@@ -32,11 +32,11 @@ Should you need access to any Google Cloud or Mixpanel resources, reach out to A
 
 You need to complete 3 things:
 
-1. proof of a working data pipeline that meets the requirements of your IC level dataset
+1. proof of a working data pipeline (a mixpanel project filled with data!) that meets the requirements of your IC level dataset
 2. A slide deck summarizing your project, including any code snippets, architecture diagrams, and key takeaways
 3. A ~10min presentation of your project
 
-You are expected to turn your slides and code in on XXXXXXX date. You will be presenting your work to your colleagues between YYYYY and ZZZZZZZ dates.
+**You are expected to turn your slides and code in on XXXXXXX date. You will be presenting your work to your colleagues between YYYYY and ZZZZZZZ dates.**
 
 ## Datasets
 
@@ -48,31 +48,39 @@ They are all in the same bucket:
 
 And if you want to go above and beyond, feel free to tackle the extra credit section at the end!
 
-NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT
+**NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's IN THE BULLET POINTS BELOW ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT**
 
-#### I.C. LEVEL 3 DATASET:
+#### I.C. LEVEL 3: "A CLEAN START"
+A customer wants to buy mixpanel but needs your help loading their POC data into a project. They have all the right primitives in place, but need help verifying the data quality and loading it in. Your job is to design a simple data pipeline that ingests their clean data files and loads them into Mixpanel with minimal transformation.
 - [gs://se-capstone-2026/ic3/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic3)
-	- Basic web + mobile events
-	- Simple user properties
-	- Duplicate events
+	- Basic clickstream events (multischema)
+	- User properties (monoschema)
+	- Event deduplication (has idempotency keys)
+	- A identity management workload (device_id → user_id)
 
-#### I.C. LEVEL 4 DATASET:
+#### I.C. LEVEL 4: "A SCALING STARTUP"
+You are inheriting data from a rapidly growing app with a fragmented tech stack. They have multiple data sources, inconsistent schemas, and incomplete user profiles. Your job is to design a robust data pipeline that can handle the complexity and scale of their data while ensuring data quality and integrity.
 - [gs://se-capstone-2026/ic4/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic4)
-	- Complex data shapes (nested JSON, arrays)
-	- Sessionization Needed (single sessions table with start/end times)
+	- Events w/complex properties (nested JSON, arrays)
+	- Separate session logs session modeling needed 
 	- Incomplete user properties (need to join merge from multiple sources)
+	- Event deduplication (no idempotency keys)
 	
-#### I.C. LEVEL 5 DATASET:
+	
+#### I.C. LEVEL 5: "THE ENTERPRISE MIGRATION"
+You are migrating a legacy enterprise client with years of historical debt. Their data is messy, inconsistent, and riddled with edge cases. Your job is to design a comprehensive data pipeline that can clean, transform, and load their data into Mixpanel while addressing the various challenges posed by their legacy systems.
 - [gs://se-capstone-2026/ic5/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic5)
 	- User merges
 	- Lookups + Normalized Dimension Tables
 	- Bad Fields (nulls, wrong types, etc)
 	- Too big events (8kb, 256+ chars)
+	- Timezone normalization and offsets required
 
 
 #### Extra Credit
-- [gs://se-capstone-2026/vendors/](https://console.cloud.google.com/storage/browser/se-capstone-2026/vendors)
-
 None of these datasets are real. They are all manufactured by AK, based on 10 years of field experience. 
 
-However, if you want to tackle real datasets from the wild, here is the gold mine (extract) of datasets from vendors like Amplitude, Heap, Adobe, mParticle, Segment, and friends:
+However, if you want to tackle real datasets from the wild, here is the gold mine (extract) of datasets from vendors like Amplitude, Heap, Adobe, mParticle, Segment, and friends, you can do that here:
+- [gs://se-capstone-2026/vendors/](https://console.cloud.google.com/storage/browser/se-capstone-2026/vendors)
+
+(hint: [this tool](https://github.com/ak--47/mixpanel-import) might help)
