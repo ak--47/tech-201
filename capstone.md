@@ -12,7 +12,7 @@ You have now arrived at the **capstone project**, where you will apply all that 
 
 In this capstone project, you will work on a **real-world data engineering problem from start to finish**. You will be responsible for designing and **implementing a data pipeline** that takes **files in google cloud storage** and brings them into Mixpanel as **well-formed events, properties, and users**.
 
-You should then make a ~10min final presentation (slides + code + demo) of your project, highlighting the architecture, technologies used, and any challenges you faced along the way.
+You should then make a ~10min final presentation (slides + code + demo) of your project, highlighting the architecture, technologies used, and any challenges you faced along the way. The Demo will be live for those attending Mixcursion in person, and a recorded video for those not attending .
 
 Your final presentation should include details on:
 
@@ -33,10 +33,10 @@ Should you need access to any Google Cloud or Mixpanel resources, reach out to A
 You need to complete 3 things:
 
 1. proof of a working data pipeline (a mixpanel project filled with data!) that meets the requirements of your IC level dataset
-2. A slide deck summarizing your project, including any code snippets, architecture diagrams, and key takeaways
+2. A slide deck summarizing your project, including any code snippets, architecture diagrams, and key takeaways; **here is a template you can use for your presentation: [SE Capstone Template - Google Slides](https://docs.google.com/presentation/d/12la6icYmfJzX2gDj8sbDSIVbv9v3yGtch5Mgkcp5AGU/edit?usp=sharing)** 
 3. A ~10min presentation of your project
 
-**You are expected to turn your slides and code in on XXXXXXX date. You will be presenting your work to your colleagues between YYYYY and ZZZZZZZ dates.**
+**You are expected to turn your slides and code in on February 6th. You will be presenting your work to your colleagues between February 9th and February 13th.**
 
 ## Datasets
 
@@ -48,7 +48,7 @@ They are all in the same bucket:
 
 And if you want to go above and beyond, feel free to tackle the extra credit section at the end!
 
-**NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's IN THE BULLET POINTS BELOW ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT**
+**NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's IN THE BULLET POINTS BELOW ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT** todo: REMOVE THESE
 
 #### I.C. LEVEL 3: "A CLEAN START"
 A customer wants to buy mixpanel but needs your help loading their POC data into a project. They have all the right primitives in place, but need help verifying the data quality and loading it in. Your job is to design a simple data pipeline that ingests their clean data files and loads them into Mixpanel with minimal transformation.
@@ -75,6 +75,7 @@ You are migrating a legacy enterprise client with years of historical debt. Thei
 	- Bad Fields (nulls, wrong types, etc)
 	- Too big events (8kb, 256+ chars)
 	- Timezone normalization and offsets required
+	- Event deduplication (no idempotency keys)
 
 
 #### Extra Credit
