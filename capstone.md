@@ -48,34 +48,21 @@ They are all in the same bucket:
 
 And if you want to go above and beyond, feel free to tackle the extra credit section at the end!
 
-**NOTE: I DON'T WANT TO SHARE THE ACTUAL / THEMES ISSUES WITH THE IC's IN THE BULLET POINTS BELOW ... THIS IS JUST FOR YOU TO KNOW WHAT CHALLENGES TO EXPECT** todo: REMOVE THESE
 
 #### I.C. LEVEL 3: "A CLEAN START"
 A customer wants to buy mixpanel but needs your help loading their POC data into a project. They have all the right primitives in place, but need help verifying the data quality and loading it in. Your job is to design a simple data pipeline that ingests their clean data files and loads them into Mixpanel with minimal transformation.
 - [gs://se-capstone-2026/ic3/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic3)
-	- Basic clickstream events (multischema)
-	- User properties (monoschema)
-	- Event deduplication (has idempotency keys)
-	- A identity management workload (device_id → user_id)
+
 
 #### I.C. LEVEL 4: "A SCALING STARTUP"
 You are inheriting data from a rapidly growing app with a fragmented tech stack. They have multiple data sources, inconsistent schemas, and incomplete user profiles. Your job is to design a robust data pipeline that can handle the complexity and scale of their data while ensuring data quality and integrity.
 - [gs://se-capstone-2026/ic4/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic4)
-	- Events w/complex properties (nested JSON, arrays)
-	- Separate session logs session modeling needed 
-	- Incomplete user properties (need to join merge from multiple sources)
-	- Event deduplication (no idempotency keys)
-	
+
 	
 #### I.C. LEVEL 5: "THE ENTERPRISE MIGRATION"
 You are migrating a legacy enterprise client with years of historical debt. Their data is messy, inconsistent, and riddled with edge cases. Your job is to design a comprehensive data pipeline that can clean, transform, and load their data into Mixpanel while addressing the various challenges posed by their legacy systems.
 - [gs://se-capstone-2026/ic5/](https://console.cloud.google.com/storage/browser/se-capstone-2026/ic5)
-	- User merges
-	- Lookups + Normalized Dimension Tables
-	- Bad Fields (nulls, wrong types, etc)
-	- Too big events (8kb, 256+ chars)
-	- Timezone normalization and offsets required
-	- Event deduplication (no idempotency keys)
+
 
 
 #### Extra Credit
