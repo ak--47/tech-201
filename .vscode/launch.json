@@ -9,13 +9,37 @@
 			"request": "launch",
 			"name": "go",
 			"program": "${file}",
-			"runtimeArgs": ["--inspect"],
+			"runtimeArgs": [
+				"--inspect"
+			],
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
 			"env": {
 				"NODE_ENV": "dev"
 			}
+		},
+		{
+			"type": "bashdb",
+			"request": "launch",
+			"name": "debug",
+			"cwd": "${workspaceFolder}",
+			"program": "${workspaceFolder}/load.sh",
+			"args": [],
+			"pathBash": "/opt/homebrew/bin/bash",
+		},
+		{
+			"name": "load",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "bash ${workspaceFolder}/load.sh",
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"name": "delete",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "bash ${workspaceFolder}/load.sh --delete",
+			"cwd": "${workspaceFolder}"
 		}
-		
 	]
 }
