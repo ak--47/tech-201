@@ -38,6 +38,9 @@ You need to complete 3 things:
 
 **You are expected to turn your slides and code in on February 6th. You will be presenting your work to your colleagues between February 9th and February 13th.**
 
+THIS IS WHERE YOU TURN IN YOUR ASSETS:
+https://docs.google.com/spreadsheets/d/1HYVkSAsSGweEuw6U24kAxcGlcFZkhL2ABgZ3T0cdkz8/edit?usp=sharing
+
 ## Datasets
 
 Each IC level has a corresponding dataset with increasing complexity. You are expected to complete the capstone project using the dataset that corresponds to your current IC level.
